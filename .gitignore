@@ -1,0 +1,21 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.cursor/
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/
+
+# BBC CSV from Kaggle — download locally (see README)
+data/*.csv
+
+# Generated index output (stage 4)
+output/
+
+# Secrets
+.kaggle/
+kaggle.json
+.env
