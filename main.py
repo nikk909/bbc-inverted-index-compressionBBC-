@@ -22,6 +22,10 @@ def load_and_assign_docids() ->pd.DataFrame:#return type hint返回类型标注
     df["Description"] = df["Description"].astype(str)
     df["Description"] = df["Description"].str.strip()
 
+    #检查有没有为空或是为nan的行
+    check_empty_nan1 = df["Title","Descipition"].stack()
+    print(check_empty_nan1.isin["","nan"])
+
     #展示
     for i in range(5):
         #默认先列后行。也可以是df.loc[i,"Title"]
