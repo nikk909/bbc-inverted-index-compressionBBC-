@@ -24,15 +24,3 @@ Download from Kaggle competition [learn-ai-bbc](https://www.kaggle.com/competiti
 ```bash
 python main.py
 ```
-
-## Plan / 实现计划
-
-See `plan.txt` for four stages: naive index -> postings compression -> dictionary compression -> evaluation & search.
-
-## Project layout / 目录
-
-| File | Description |
-|------|-------------|
-| `main.py` | Entry: load & preprocess (stage 1 in progress) |
-| `example.py` | Reference implementation for stage 1 |
-| `plan.txt` | Full lab plan (ZH) |
