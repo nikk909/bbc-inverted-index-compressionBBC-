@@ -12,6 +12,7 @@ def load_and_assign_docids() ->pd.DataFrame:#return type hint返回类型标注
     train = pd.read_csv(train_path,usecols=cols)
     test = pd.read_csv(test_path,usecols=cols)
 
+    #合并数据集和测试集的数据，ignore_index=True表示忽略原来的索引，重新从0开始分配索引
     df = pd.concat([train,test],ignore_index=True)
     #df会将缺失值转成nan
     #将title这一列全转换成字符串
@@ -23,18 +24,18 @@ def load_and_assign_docids() ->pd.DataFrame:#return type hint返回类型标注
     df["Description"] = df["Description"].str.strip()
 
     #检查有没有为空或是为nan的行
-    check_empty_nan1 = df["Title","Descipition"].stack()
-    print(check_empty_nan1.isin["","nan"])
+    check_empty_nan1 = df[["Title","Description"]].isin(["","nan"])
+    #print(check_empty_nan1.sum())
+    #这里可以检查到没有空行或者为nan的行数
 
-    #展示
-    for i in range(5):
-        #默认先列后行。也可以是df.loc[i,"Title"]
-        print(f"Title: {df['Title'][i]}")
-        print("--------------------------------")
-        print(f"Description: {df['Description'][i]}")
-        print("--------------------------------")
+    #需要指定doc_id以便于后续进行排序还能找到原本的行号
+    df["doc_id"] = range(len(df))
 
-    return df
+    #不好看把doc_id这一列放在最前面
+    #改列顺序，如果有其他没有提到的列会被丢掉
+    df = df[["doc_id","Title","Description"]]
+
+    print(df.head())
 
 if __name__ == "__main__":
     docs = load_and_assign_docids()
